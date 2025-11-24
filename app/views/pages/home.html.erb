@@ -1,0 +1,83 @@
+<div class="header">
+  <h1> Static Site Contact Form Service</h1>
+  <p>Add contact forms to any static website without backend code</p>
+</div>
+
+<!-- Integration Instructions -->
+<div>
+  <h2> How to Integrate</h2>
+
+  <div>
+    <div>
+      <h4>1. Copy the Form</h4>
+      <p>Copy the HTML form snippet below, You can apply css to style it to match your website design</p>
+    </div>
+
+    <div>
+      <h4>2. Paste in Your Site</h4>
+      <p>Add it to any HTML page on your static site</p>
+    </div>
+
+    <div>
+      <h4>3. Set Your Site url and email address.</h4>
+      <p>Replace "my-static-site" with your site name and "site_owner_email" with your email address to which the contact form submission notification will be sent.</p>
+    </div>
+
+    <div>
+      <h4>4. Done!</h4>
+      <p>
+        Your submissions can be viewed in "<%= @base_url %>/contact_submissions" page.
+        Make sure you set your site url and site owner email correctly as shown in the following example.
+        <br />
+        <code>
+          <%= @base_url %>/contact_submissions?site_owner_email=[SITE_OWNER_EMAIL]&site_url=[YOUR_WEBSITE_URL]
+        </code>
+
+        <br />
+        <br />
+        It might look something like this:
+        <br />
+        <code>
+          <%= @base_url %>/contact_submissions?site_owner_email=some@email.com&site_url=http://localhost:4200
+        </code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- HTML Snippet Section -->
+<div>
+  <h2> Copy-Paste Form Snippet</h2>
+  <p>Add this contact form to your static website:</p>
+
+  <div>
+    <pre>
+<code>
+  &lt;!-- Contact Form for Static Sites --&gt;
+  &lt;form action="<%= @base_url %>/contact_submissions" method="POST"&gt;
+
+    &lt;!-- Replace 'site_url' with your web address and 'site_owner_email' with your email address in the value attribute --&gt;
+    &lt;input type="hidden" name="contact_submission[site_url]" value="site_url"&gt;
+    &lt;input type="hidden" name="contact_submission[site_owner_email]" value="site_owner_email"&gt;
+
+    &lt;div&gt;
+      &lt;label for="name"&gt;Name:&lt;/label&gt;
+      &lt;input type="text" id="name" name="contact_submission[name]" required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="email"&gt;Email:&lt;/label&gt;
+      &lt;input type="email" id="email" name="contact_submission[email]" required&gt;
+    &lt;/div&gt;
+
+    &lt;div&gt;
+      &lt;label for="message"&gt;Message:&lt;/label&gt;
+      &lt;textarea id="message" name="contact_submission[message]" required&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit"&gt; Send Message &lt;/button&gt;
+  &lt;/form&gt;
+</code>
+</pre>
+  </div>
+</div>
