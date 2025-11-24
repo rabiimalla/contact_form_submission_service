@@ -53,6 +53,25 @@ RSpec.describe 'ContactSubmissions', type: :request do
     end
   end
 
+  describe 'GET /contact_submissions' do
+    context 'check the site_owner_email and site_url' do
+      it 'return error if site_owner_email and site_url are missing' do
+        get contact_submissions_path
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'pass through if site_owner_email and site_url are attached' do
+        25.times do |i|
+          contact_submission = build(:contact_submission, name: "name #{i}", site_owner_email: "some.owner@email.com", site_url: "http://localhost:8200")
+          contact_submission.save!
+        end
+        get contact_submissions_path, params: { site_owner_email: 'some.owner@email.com', site_url: 'http://localhost:8200' }
+
+        expect(response).to be_successful
+      end
+    end
+  end
+
   def json_response
     JSON.parse(response.body)
   end

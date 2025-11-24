@@ -1,6 +1,18 @@
 class ContactSubmissionsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :validate_site_owner, only: [ :create ]
+  before_action :validate_site, only: [ :index ]
+
+  def index
+    @contact_submissions = ContactSubmission.where(site_owner_email: params[:site_owner_email], site_url: params[:site_url])
+                                      .order(created_at: :desc)
+                                      .page(params[:page])
+                                      .per(10)
+
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
 
   def create
     @contact_submission = ContactSubmission.new(contact_submission_params)
@@ -24,6 +36,13 @@ class ContactSubmissionsController < ApplicationController
     site_owner_email = params.dig(:contact_submission, :site_owner_email)
     unless site_owner_email.present?
       render json: { status: "error", message: "Static site owner's email is required" }, status: :unprocessable_entity
+    end
+  end
+
+  def validate_site
+    # check that site_owner_email and site_url are sent via query params
+    if params[:site_owner_email].nil? || params[:site_url].nil?
+      render "error", status: :unprocessable_entity
     end
   end
 end

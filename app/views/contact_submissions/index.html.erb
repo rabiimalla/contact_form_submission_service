@@ -1,0 +1,52 @@
+<div class="header">
+  <h1>📨 Contact Submissions</h1>
+  <p>Manage all contact form submissions from your static sites</p>
+</div>
+
+<div class="stats">
+  <strong>Total Submissions:</strong> <%= @contact_submissions.total_count %> |
+  <strong>Page:</strong> <%= @contact_submissions.current_page %> of <%= @contact_submissions.total_pages %> |
+</div>
+
+<% if @contact_submissions.any? %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Message</th>
+      <th>Submitted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contact_submissions.each do |submission| %>
+    <tr>
+      <td><%= submission.id %></td>
+      <td>
+        <strong><%= submission.name %></strong>
+      </td>
+      <td>
+        <a href="mailto:<%= submission.email %>"><%= submission.email %></a>
+      </td>
+      <td>
+        <p><%= submission.message %></p>
+      </td>
+      <td>
+        <small><%= submission.created_at.strftime('%b %d, %Y %I:%M %p') %></small>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Pagination -->
+<div class="pagination">
+  <%= paginate @contact_submissions %>
+</div>
+<% else %>
+<div style="text-align: center; padding: 40px; color: #666;">
+  <h3>No contact form submissions yet</h3>
+  <p>Contact form submissions from your static sites will appear here.</p>
+</div>
+<% end %>
