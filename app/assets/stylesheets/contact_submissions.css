@@ -1,0 +1,49 @@
+.container {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.table {
+  width: 100%;
+}
+
+.table th, .table td {
+  padding: 10px;
+}
+
+.table th {
+  border-bottom: 2px solid gray;
+}
+
+.table td.email {
+  overflow-wrap: anywhere; 
+}
+
+.container, .header, .stats {
+  margin-bottom: 25px;
+}
+
+@media (min-width: 576px) {
+  .container{
+    max-width: 90vw;
+  }
+}
+
+@media(min-width: 992px) {
+  .container{
+    max-width: 85vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .table {
+    width: 80%;
+  }
+}
