@@ -9,13 +9,14 @@ This is a simple contact form submission service that can be used by any website
 
 To set up and run this service locally we mainly need `git` and `ruby version 3.4.7`.
 
-1. git pull the rails application and then `cd ContactFormService`
-2. run `bundle install` (make sure ruby version is 3.4.7, `ruby -v`) to get all required gems
-3. run `rails db:create`, `rails db:migrate` to set up database
-4. optionally, some seed data can also be populated by running `rails db:seed` command
-5. run `rails s`to start the rails server
-6. open http://localhost:3000
-7. For letter_opener web interface, go to http://locahost:3000/letter_opener
+1. clone the repo: `git clone https://github.com/rabiimalla/contact_form_submission_service.git`
+2. go the root directory `cd contact_form_submission_service`
+3. run `bundle install` (make sure ruby version is 3.4.7, `ruby -v`) to get all required gems
+4. run `rails db:create`, `rails db:migrate` to set up database
+5. optionally, some seed data can also be populated by running `rails db:seed` command
+6. run `rails s`to start the rails server
+7. open http://localhost:3000
+8. For letter_opener web interface, go to http://locahost:3000/letter_opener
 
 ## Limitations and decisions
 
